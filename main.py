@@ -1,16 +1,14 @@
-# This is a sample Python script.
+import glob
+import os
+from PIL import Image
 
-# Press Shift+F10 to execute it or replace it with your code.
-# Press Double Shift to search everywhere for classes, files, tool windows, actions, and settings.
+import cv2
+import streamlit as st
 
+st.title('Demo Streamlit Share')
+files = glob.glob(os.getcwd() + '/*.jpg')
 
-def print_hi(name):
-    # Use a breakpoint in the code line below to debug your script.
-    print(f'Hi, {name}')  # Press Ctrl+F8 to toggle the breakpoint.
+source = st.selectbox('Select a file for display', tuple(files))
 
-
-# Press the green button in the gutter to run the script.
-if __name__ == '__main__':
-    print_hi('PyCharm')
-
-# See PyCharm help at https://www.jetbrains.com/help/pycharm/
+image = Image.open(source)
+st.image(image, caption="Output Image")
